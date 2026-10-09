@@ -11,6 +11,9 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
+        
+      - name: "Setup node js in vm"
+        uses: actions/setup-node@v3
         with:
           node-version: 24
           cache: npm
@@ -20,3 +23,6 @@ jobs:
 
       - name: Build React app
         run: npm run build
+
+      - name: run eslint
+        run: npm run lint   
