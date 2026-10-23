@@ -1,7 +1,9 @@
 name: first workflow
-on: 
+on:
   push:
+    branches: [main]
   pull_request:
+
 jobs:
   first_job:
     runs-on: ubuntu-latest
@@ -18,5 +20,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+
       - name: Build React app
         run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: dist/
+          retention-days: 5
